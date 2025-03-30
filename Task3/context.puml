@@ -1,0 +1,20 @@
+@startuml
+!include <C4/C4_Container>
+
+Person(clients, "Собственники", "Мобильное приложение")
+System_Boundary(c1, "Система PropDevelopment") {
+  System(server, "Server", "Сервер компании PropDevelopment")
+}
+
+System_Boundary(c2, "Система партнера") {
+  System(smart_intercom, "Умный домофон")
+  System(smart_barrier, "Интеллектуальный шлагбаум")
+}
+
+
+
+Rel(clients, c1, "Запрос данных через мобильное приложение","", "[REST/ HTTPS]")
+BiRel(c1, c2, "Взаимодействие с системой партнера","", "[gRPC/ HTTPS]")
+
+
+@enduml
